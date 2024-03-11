@@ -238,21 +238,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="projectss md:grid md:grid-cols-2 md:gap-5 md:ml-[20px] xl:grid-cols-3 xl:ml-[100px]">
+        <section className="projectss md:grid md:grid-cols-2 md:gap-5 xl:grid-cols-3">
           {data.map((el) => (
             <motion.div
               key={el.name}
               className="mb-10"
               whileInView={{
                 opacity: 1,
-                y: 0,
               }}
               whileHover={{
                 scale: 1.1,
               }}
               initial={{
                 opacity: 0,
-                y: 0,
               }}
             >
               <img src={el.photo} alt="" />
@@ -300,46 +298,57 @@ export default function Home() {
             fill in the form, and I’ll get back to you as soon as possible.
           </p>
         </motion.div>
-        <form
+        <motion.form
           ref={form}
           onSubmit={handleSubmit}
           className="flex justify-center items-center flex-col"
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          initial={{
+            opacity: 0,
+            y: 100,
+          }}
         >
-          <input
+          <motion.input
             onChange={handleChange}
             value={formState.user_name}
             type="text"
             style={{ color: "#FFF" }}
             placeholder="NAME"
             name="user_name"
+            whileHover={{scale: "1.1"}}
           />
           <p className="errori" style={{ color: "red" }}>
             {nameEr}
           </p>
-          <input
+          <motion.input
             onChange={handleChange}
             value={formState.user_email}
             type="email"
             placeholder="EMAIL"
             style={{ color: "#FFF" }}
             name="user_email"
+            whileHover={{scale: "1.1"}}
           />
           <p className="errori" style={{ color: "red" }}>
             {EmailEr}
           </p>
-          <input
+          <motion.input
             onChange={handleChange}
             value={formState.message}
             style={{ height: "107px", color: "#FFF" }}
             type="text"
             placeholder="MESSAGE"
             name="message"
+            whileHover={{scale: "1.1"}}
           />
           <p className="errori" style={{ color: "red" }}>
             {MsgEr}
           </p>
           <button className="btn mt-5 pb-2">Send Message</button>
-        </form>
+        </motion.form>
       </footer>
     </>
   );

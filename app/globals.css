@@ -320,4 +320,8 @@ input{
     align-items: center;
     margin: 0 auto;
   }
+  .wrapped{
+    word-wrap: normal;
+    text-wrap: wrap;
+  }
 }
