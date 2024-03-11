@@ -126,7 +126,7 @@ export default function Home() {
 
       <section className="projectss md:grid md:grid-cols-2 md:gap-5 md:ml-[20px] xl:grid-cols-3 xl:ml-[100px]">
       {data.map(el => (
-      <div className="mb-10">
+      <div key={el.name} className="mb-10">
         <img src={el.photo} alt="" />
         <h4 className="mt-5 name">{el.name}</h4>
         <h6 className="mt-[7px] langs">{el.languages}</h6>
