@@ -82,7 +82,7 @@ export default function Home() {
 
       setTimeout(() => {
         setConfetti(false)
-      }, 5000);
+      }, 10000);
   };
 
   return (
