@@ -10,17 +10,17 @@ import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 
 type SubmitType = {
-  email: string;
-  name: string;
+  emaili: string;
+  saxeli: string;
   message: string;
 };
 
 const schema = yup.object().shape({
-  name: yup
+  saxeli: yup
     .string()
     .required("First Name Is Empty")
     .matches(/^[a-zA-Z]+$/, "Only letters are allowed"),
-  email: yup
+  emaili: yup
     .string()
     .required("Looks Like This Is Not An Email")
     .email("Email Isn't Valid"),
@@ -32,29 +32,49 @@ export default function Home() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SubmitType>({
-    resolver: yupResolver(schema),
-  });
+  } = useForm<SubmitType>();
+  // resolver: yupResolver(schema),);
 
-  const onSubmit = (data: SubmitType) => {
+  const onsubmit = async (data: SubmitType) => {
+    const tempData = {
+      from_name: data.saxeli,
+      from_email: data.emaili,
+      message: data.message,
+    };
     console.log(data);
+    emailjs
+      .sendForm(
+        "service_fcz9f4e",
+        "template_iw96yur",
+        tempData,
+        "ivP0zlBBE87ZvuzHc"
+      )
+      .then((el) => {
+        console.log(el);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  const form = useRef<HTMLFormElement>(null);
+  // const form = useRef<HTMLFormElement>(null);
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  // const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
 
-    if (form.current) {
-      emailjs
-        .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
-          publicKey: "ivP0zlBBE87ZvuzHc",
-        })
-        .then((el) => {console.log(el);
-        },
-          (error) => {console.log(error, error.text);});
-    }
-  };
+  //   if (form.current) {
+  //     emailjs
+  //       .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
+  //         publicKey: "ivP0zlBBE87ZvuzHc",
+  //       })
+  //       .then((el) => {
+  //         console.log(el);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // };
 
   return (
     <>
@@ -269,53 +289,51 @@ export default function Home() {
             fill in the form, and I’ll get back to you as soon as possible.
           </p>
         </motion.div>
-        <motion.form
-          ref={form}
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit(onSubmit)();
-            sendEmail(e);
-          }}
+        <form
+          // ref={form}
+          onSubmit={handleSubmit(onsubmit)}
           className="flex justify-center items-center flex-col"
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          initial={{
-            opacity: 0,
-            y: 100,
-          }}
+          // whileInView={{
+          //   opacity: 1,
+          //   y: 0,
+          // }}
+          // initial={{
+          //   opacity: 0,
+          //   y: 100,
+          // }}
         >
-          <motion.input
+          <input
             type="text"
+            style={{ color: "#FFF" }}
             placeholder="NAME"
-            {...register("name")}
-            whileHover={{ scale: "1.1" }}
-            name="user_name"
+            {...register("saxeli")}
+            // whileHover={{ scale: "1.1" }}
+            // name="saxeli"
           />
-          {errors.name && (
+          {errors.saxeli && (
             <p className="errori" style={{ color: "red" }}>
-              {errors.name.message}
+              {errors.saxeli.message}
             </p>
           )}
-          <motion.input
+          <input
             type="email"
             placeholder="EMAIL"
-            {...register("email")}
-            whileHover={{ scale: "1.1" }}
-            name="user_email"
+            style={{ color: "#FFF" }}
+            {...register("emaili")}
+            // whileHover={{ scale: "1.1" }}
+            // name="emaili"
           />
-          {errors.email && (
+          {errors.emaili && (
             <p className="errori" style={{ color: "red" }}>
-              {errors.email.message}
+              {errors.emaili.message}
             </p>
           )}
-          <motion.input
-            style={{ height: "107px" }}
+          <input
+            style={{ height: "107px", color: "#FFF" }}
             type="text"
             placeholder="MESSAGE"
             {...register("message")}
-            whileHover={{ scale: "1.1" }}
+            // whileHover={{ scale: "1.1" }}
           />
           {errors.message && (
             <p className="errori" style={{ color: "red" }}>
@@ -323,7 +341,7 @@ export default function Home() {
             </p>
           )}
           <button className="btn mt-5 pb-2">Send Message</button>
-        </motion.form>
+        </form>
       </footer>
     </>
   );
