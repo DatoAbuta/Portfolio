@@ -40,23 +40,20 @@ export default function Home() {
     console.log(data);
   };
 
-  const form = useRef();
+  const form = useRef<HTMLFormElement>(null);
 
-  const sendEmail = (e) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
-        publicKey: "ivP0zlBBE87ZvuzHc",
-      })
-      .then(
-        () => {
-          console.log("SUCCESS!");
+    if (form.current) {
+      emailjs
+        .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
+          publicKey: "ivP0zlBBE87ZvuzHc",
+        })
+        .then((el) => {console.log(el);
         },
-        (error) => {
-          console.log("FAILED...", error.text);
-        }
-      );
+          (error) => {console.log(error, error.text);});
+    }
   };
 
   return (
