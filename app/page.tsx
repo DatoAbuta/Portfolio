@@ -1,80 +1,89 @@
 "use client";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { data } from "./data";
 import { Typewriter } from "react-simple-typewriter";
-import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { useRef } from "react";
-
-type SubmitType = {
-  emaili: string;
-  saxeli: string;
-  message: string;
-};
-
-const schema = yup.object().shape({
-  saxeli: yup
-    .string()
-    .required("First Name Is Empty")
-    .matches(/^[a-zA-Z]+$/, "Only letters are allowed"),
-  emaili: yup
-    .string()
-    .required("Looks Like This Is Not An Email")
-    .email("Email Isn't Valid"),
-  message: yup.string().required("Cannot Be Empty"),
-});
+import { motion } from "framer-motion";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import Confetti from "react-confetti";
 
 export default function Home() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SubmitType>();
-  // resolver: yupResolver(schema),);
+  const form = useRef(null);
 
-  const onsubmit = async (data: SubmitType) => {
-    const tempData = {
-      from_name: data.saxeli,
-      from_email: data.emaili,
-      message: data.message,
-    };
-    console.log(data);
+  const [formState, setFormState] = useState({
+    user_name: "",
+    user_email: "",
+    message: "",
+  });
+
+  const [nameEr, setNameEr] = useState("");
+  const [EmailEr, setEmailEr] = useState("");
+  const [MsgEr, setMsgEr] = useState("");
+
+  const [confetti, setConfetti] = useState(false);
+
+  function validateForm() {
+    if (!formState.user_name) {
+      setNameEr("Cannot Be Empty");
+      return false;
+    } else {
+      setNameEr("");
+    }
+
+    if (!formState.user_email) {
+      setEmailEr("Cannot Be Empty");
+      return false;
+    } else {
+      setEmailEr("");
+    }
+
+    if (!formState.message) {
+      setMsgEr("Cannot Be Empty");
+      return false;
+    } else {
+      setMsgEr("");
+    }
+
+    setFormState({
+      user_name: "",
+      user_email: "",
+      message: "",
+    });
+
+    setConfetti(!confetti);
+
+    return true;
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    if (!form.current) return;
+
     emailjs
-      .sendForm(
-        "service_fcz9f4e",
-        "template_iw96yur",
-        tempData,
-        "ivP0zlBBE87ZvuzHc"
-      )
+      .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
+        publicKey: "ivP0zlBBE87ZvuzHc",
+      })
       .then((el) => {
         console.log(el);
       })
       .catch((err) => {
         console.log(err);
       });
+
+      setTimeout(() => {
+        setConfetti(false)
+      }, 5000);
   };
-
-  // const form = useRef<HTMLFormElement>(null);
-
-  // const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   if (form.current) {
-  //     emailjs
-  //       .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
-  //         publicKey: "ivP0zlBBE87ZvuzHc",
-  //       })
-  //       .then((el) => {
-  //         console.log(el);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // };
 
   return (
     <>
@@ -236,7 +245,6 @@ export default function Home() {
               className="mb-10"
               whileInView={{
                 opacity: 1,
-                x: 0,
                 y: 0,
               }}
               whileHover={{
@@ -244,8 +252,7 @@ export default function Home() {
               }}
               initial={{
                 opacity: 0,
-                x: 100,
-                y: 100,
+                y: 0,
               }}
             >
               <img src={el.photo} alt="" />
@@ -271,7 +278,11 @@ export default function Home() {
           ))}
         </section>
       </section>
-      <footer className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full">
+      <footer className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full relative">
+      {confetti ? <Confetti
+          style={{ height: "100%", left: "50%", transform: "translateX(-50%)" }}
+          width={window.innerWidth}
+        /> : null}
         <motion.div
           className="xl:flex xl:flex-col xl:justify-center xl:items-left"
           whileInView={{
@@ -290,56 +301,43 @@ export default function Home() {
           </p>
         </motion.div>
         <form
-          // ref={form}
-          onSubmit={handleSubmit(onsubmit)}
+          ref={form}
+          onSubmit={handleSubmit}
           className="flex justify-center items-center flex-col"
-          // whileInView={{
-          //   opacity: 1,
-          //   y: 0,
-          // }}
-          // initial={{
-          //   opacity: 0,
-          //   y: 100,
-          // }}
         >
           <input
+            onChange={handleChange}
+            value={formState.user_name}
             type="text"
             style={{ color: "#FFF" }}
             placeholder="NAME"
-            {...register("saxeli")}
-            // whileHover={{ scale: "1.1" }}
-            // name="saxeli"
+            name="user_name"
           />
-          {errors.saxeli && (
-            <p className="errori" style={{ color: "red" }}>
-              {errors.saxeli.message}
-            </p>
-          )}
+          <p className="errori" style={{ color: "red" }}>
+            {nameEr}
+          </p>
           <input
+            onChange={handleChange}
+            value={formState.user_email}
             type="email"
             placeholder="EMAIL"
             style={{ color: "#FFF" }}
-            {...register("emaili")}
-            // whileHover={{ scale: "1.1" }}
-            // name="emaili"
+            name="user_email"
           />
-          {errors.emaili && (
-            <p className="errori" style={{ color: "red" }}>
-              {errors.emaili.message}
-            </p>
-          )}
+          <p className="errori" style={{ color: "red" }}>
+            {EmailEr}
+          </p>
           <input
+            onChange={handleChange}
+            value={formState.message}
             style={{ height: "107px", color: "#FFF" }}
             type="text"
             placeholder="MESSAGE"
-            {...register("message")}
-            // whileHover={{ scale: "1.1" }}
+            name="message"
           />
-          {errors.message && (
-            <p className="errori" style={{ color: "red" }}>
-              {errors.message.message}
-            </p>
-          )}
+          <p className="errori" style={{ color: "red" }}>
+            {MsgEr}
+          </p>
           <button className="btn mt-5 pb-2">Send Message</button>
         </form>
       </footer>
