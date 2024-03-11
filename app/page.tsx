@@ -31,7 +31,16 @@ export default function Home() {
 
   return (
     <section>
-      <header className="mt-5 xl:flex xl:gap-[716px] xl:justify-center xl:items-center">
+      <motion.header 
+      className="mt-5 xl:flex xl:gap-[716px] xl:justify-center xl:items-center"
+      whileInView={{
+        opacity:1,
+        y:0
+      }} 
+       initial={{
+         opacity:0,
+         y:100
+       }}>
         <div className="flex justify-center items-center">
           <h1 className="text-center">DatoAbuta</h1>
         </div>
@@ -49,9 +58,18 @@ export default function Home() {
             <img className="social" src="/github.svg" alt="" />
           </a>
         </nav>
-      </header>
+      </motion.header>
 
-      <section className='md:flex md:flex-row-reverse xl:justify-center xl:items-center'>
+      <motion.section 
+      className='md:flex md:flex-row-reverse xl:justify-center xl:items-center'
+      whileInView={{
+        opacity:1,
+        y:0
+      }} 
+       initial={{
+         opacity:0,
+         y:100
+       }}>
         <div className="photo flex justify-center items-center">
           <img className="w-[174px] h-[306px] mt-5 vaxo xl:ml-20" src="/me.png" alt="" />
         </div>
@@ -76,17 +94,35 @@ export default function Home() {
           </a>
           <div className="line2"></div>
         </div>
-      </section>
+      </motion.section>
 
-      <div className='flex justify-center items-center flex-col mt-10 mb-5'>
+      <motion.div 
+      className='flex justify-center items-center flex-col mt-10 mb-5'
+      whileInView={{
+        opacity:1,
+        y:0
+      }} 
+       initial={{
+         opacity:0,
+         y:100
+       }}>
         <h1>Experience</h1>
         <div className="greenline"></div>
 
 
         <div className="linee w-[343px] mt-6 md:w-[706px] xl:w-[1110px]"></div>
-      </div>
+      </motion.div>
 
-      <section className="flex justify-center items-center flex-col md:grid md:grid-cols-2 md:ml-[40px] xl:ml-[165px] xl:grid-cols-2" >
+      <motion.section 
+      className="flex justify-center items-center flex-col md:grid md:grid-cols-2 md:ml-[40px] xl:ml-[165px] xl:grid-cols-2" 
+      whileInView={{
+        opacity:1,
+        y:0
+      }} 
+       initial={{
+         opacity:0,
+         y:100
+       }}>
       <div></div>
       <div></div>
       <div className='xl:w-[345px]'>
@@ -114,7 +150,7 @@ export default function Home() {
         <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
       </div>
       <div></div>
-      </section>
+      </motion.section>
 
       <section className="flex gap-[71px] justify-center items-center mt-20 mb-10">
         <div>
@@ -164,32 +200,54 @@ export default function Home() {
       </section>
 
       <footer className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full">
-        <div className='xl:flex xl:flex-col xl:justify-center xl:items-left'>
+        <motion.div 
+        className='xl:flex xl:flex-col xl:justify-center xl:items-left'
+        whileInView={{
+          opacity:1,
+          y:0
+        }} 
+         initial={{
+           opacity:0,
+           y:100
+         }}>
           <h1 className="cont mt-[60px] xl:m-0 xl:mb-[36px]">Contact</h1>
           <p className="desc xl:mb-[36px]">I would love to hear about your project and how I could help. Please fill in the form, and I’ll get back to you as soon as possible.</p>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center items-center flex-col" action="">
-          <input 
+        </motion.div>
+        <motion.form
+        onSubmit={handleSubmit(onSubmit)} 
+        className="flex justify-center items-center flex-col"
+        whileInView={{
+          opacity:1,
+          y:0
+        }} 
+         initial={{
+           opacity:0,
+           y:100
+         }}>
+          <motion.input 
             type="text" 
             placeholder="NAME" 
             {...register("name")}
+            whileHover={{scale: "1.1"}}
           />
           {errors.name && <p className='errori' style={{color: "red"}}>{errors.name.message}</p>}
-          <input 
+          <motion.input 
             type="email" 
             placeholder="EMAIL" 
             {...register("email")}
+            whileHover={{scale: "1.1"}}
           />
           {errors.email && <p className='errori' style={{color: "red"}}>{errors.email.message}</p>}
-          <input 
+          <motion.input 
             style={{height: "107px"}} 
             type="text" 
             placeholder="MESSAGE" 
             {...register("message")}
+            whileHover={{scale: "1.1"}}
           />
           {errors.message && <p className='errori' style={{color: "red"}}>{errors.message.message}</p>}
           <button className="btn mt-5 pb-2">Send Message</button>
-        </form>
+        </motion.form>
       </footer>
     </section>
   );
