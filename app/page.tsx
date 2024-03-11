@@ -77,15 +77,42 @@ export default function Home() {
         </div>
       </section>
 
-      <div className='flex justify-center items-center flex-col'>
+      <div className='flex justify-center items-center flex-col mt-10 mb-5'>
         <h1>Experience</h1>
         <div className="greenline"></div>
+
+
+        <div className="linee w-[343px] mt-6 md:w-[706px] xl:w-[1110px]"></div>
       </div>
 
-      <section className="flex justify-center items-center flex-col md:grid md:grid-cols-2 md:ml-[40px] xl:ml-[165px] xl:grid-cols-3" >
-        <div></div>
-        <div></div>
-        <div></div>
+      <section className="flex justify-center items-center flex-col md:grid md:grid-cols-2 md:ml-[40px] xl:ml-[165px] xl:grid-cols-2" >
+      <div></div>
+      <div></div>
+      <div className='xl:w-[345px]'>
+        <h2 className="lang xl:w-[125px]">HTML</h2>
+        <p className="exp xl:w-[345px]">1 Year Experience</p>
+      </div> 
+      <div className='xl:w-[345px]'>
+        <h2 className="lang mt-6 xl:w-[185px]">TailWind CSS</h2>
+        <p className="exp xl:w-[345px]">1 Year Experience</p>
+      </div>
+      <div className='xl:w-[345px]'>
+        <h2 className="lang mt-6 xl:w-[125px]">JavaScript</h2>
+        <p className="exp xl:w-[345px]">1 Year Experience</p>
+      </div>
+      <div className='xl:w-[345px]'>
+        <h2 className="lang mt-6 xl:w-[125px]">React</h2>
+        <p className="exp xl:w-[345px]">1 Year Experience</p>
+      </div>
+      <div className='xl:w-[345px]'>
+        <h2 className="lang mt-6 xl:w-[125px]">TypeScript</h2>
+        <p className="exp xl:w-[345px]">1 Year Experience</p>
+      </div>
+      <div className='xl:w-[345px]'>
+        <h2 className="lang mt-6 xl:w-[125px]">Next.js</h2>
+        <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+      </div>
+      <div></div>
       </section>
 
       <section className="flex gap-[71px] justify-center items-center mt-20 mb-10">
