@@ -81,8 +81,13 @@ export default function Home() {
       </div >
     </section>
 
+      <div className='flex justify-center items-center flex-col'>
+        <h1>Experience</h1>
+        <div className="greenline"></div>
+      </div>
+
       <section className="flex justify-center items-center flex-col md:grid md:grid-cols-2 md:ml-[40px] xl:ml-[165px] xl:grid-cols-3" >
-        <div className="whiteline md:w-[706px] md:mt-10 xl:w-[1110px]"></div>
+      <div></div>
       <div></div>
       <div></div>
       <div className='xl:w-[345px]'>
