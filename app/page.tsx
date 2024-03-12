@@ -201,30 +201,30 @@ export default function Home() {
         >
           <div></div>
           <div></div>
-          <div className="xl:w-[345px]">
+          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
             <h2 className="lang xl:w-[125px]">HTML</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
             <h2 className="lang mt-6 xl:w-[185px]">TailWind CSS</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
             <h2 className="lang mt-6 xl:w-[125px]">JavaScript</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
             <h2 className="lang mt-6 xl:w-[125px]">React</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
             <h2 className="lang mt-6 xl:w-[125px]">TypeScript</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
             <h2 className="lang mt-6 xl:w-[125px]">Next.js</h2>
             <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
-          </div>
+          </motion.div>
           <div></div>
         </motion.section>
 
