@@ -166,7 +166,7 @@ export default function Home() {
               Based in the GEO, I’m a front-end developer passionate about
               building accessible web apps that users love.
             </p>
-              <h3 onClick={() => {if(scrollable.current)return scrollable.current.scrollIntoView({ behavior: "smooth", block: "end" })}} className="contact mb-[10px]">CONTACT ME</h3>
+              <h3 onClick={() => {if(scrollable.current)return scrollable.current.scrollIntoView({ behavior: "smooth", block: "end" })}} className="contact mb-[10px] cursor-pointer">CONTACT ME</h3>
             <div className="line2"></div>
           </div>
         </motion.section>
@@ -232,7 +232,7 @@ export default function Home() {
           <div>
             <h1 className="projects">Projects</h1>
           </div>
-          <div onClick={() => {if(scrollable.current)return scrollable.current.scrollIntoView({ behavior: "smooth", block: "end" })}}>
+          <div className="cursor-pointer" onClick={() => {if(scrollable.current)return scrollable.current.scrollIntoView({ behavior: "smooth", block: "end" })}}>
             <h3 className="contact mb-[10px]">CONTACT ME</h3>
             <div className="line2"></div>
           </div>
