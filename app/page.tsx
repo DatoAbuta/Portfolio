@@ -19,6 +19,7 @@ export default function Home() {
   const [nameEr, setNameEr] = useState("");
   const [EmailEr, setEmailEr] = useState("");
   const [MsgEr, setMsgEr] = useState("");
+  const [success, setSuccess] = useState(false)
 
   const [confetti, setConfetti] = useState(false);
 
@@ -52,6 +53,8 @@ export default function Home() {
 
     setConfetti(!confetti);
 
+    setSuccess(!success)
+
     return true;
   }
 
@@ -82,7 +85,8 @@ export default function Home() {
 
       setTimeout(() => {
         setConfetti(false)
-      }, 10000);
+        setSuccess(false)
+      }, 6000);
   };
 
   return (
@@ -301,7 +305,7 @@ export default function Home() {
         <motion.form
           ref={form}
           onSubmit={handleSubmit}
-          className="flex justify-center items-center flex-col"
+          // className="flex justify-center items-center flex-col"
           whileInView={{
             opacity: 1,
             y: 0,
@@ -347,6 +351,7 @@ export default function Home() {
           <p className="errori" style={{ color: "red" }}>
             {MsgEr}
           </p>
+          {success && (<p className="success">Thanks. <br />Email Was Successfully Sent!</p>)}
           <button className="btn mt-5 pb-2">Send Message</button>
         </motion.form>
       </footer>
