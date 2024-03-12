@@ -89,6 +89,7 @@ export default function Home() {
       }, 6000);
   };
 
+  const scrollable = useRef<HTMLDivElement>(null)
   return (
     <>
       <section>
@@ -165,12 +166,7 @@ export default function Home() {
               Based in the GEO, I’m a front-end developer passionate about
               building accessible web apps that users love.
             </p>
-            <a
-              href="https://www.linkedin.com/in/dato-abutidze-9056aa294/"
-              target="_blank"
-            >
-              <h3 className="contact mb-[10px]">CONTACT ME</h3>
-            </a>
+              <h3 onClick={() => {if(scrollable.current)return scrollable.current.scrollIntoView({ behavior: "smooth", block: "end" })}} className="contact mb-[10px]">CONTACT ME</h3>
             <div className="line2"></div>
           </div>
         </motion.section>
@@ -236,7 +232,7 @@ export default function Home() {
           <div>
             <h1 className="projects">Projects</h1>
           </div>
-          <div>
+          <div onClick={() => {if(scrollable.current)return scrollable.current.scrollIntoView({ behavior: "smooth", block: "end" })}}>
             <h3 className="contact mb-[10px]">CONTACT ME</h3>
             <div className="line2"></div>
           </div>
@@ -280,7 +276,7 @@ export default function Home() {
           ))}
         </section>
       </section>
-      <footer className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full relative">
+      <footer ref={scrollable} className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full relative">
       {confetti ? <Confetti
           style={{ height: "100%", left: "50%", transform: "translateX(-50%)" }}
           width={window.innerWidth}
