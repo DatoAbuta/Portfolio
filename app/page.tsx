@@ -166,7 +166,9 @@ export default function Home() {
               Based in the GEO, I’m a front-end developer passionate about
               building accessible web apps that users love.
             </p>
-              <h3 onClick={() => {if(scrollable.current)return scrollable.current.scrollIntoView({ behavior: "smooth", block: "end" })}} className="contact mb-[10px] cursor-pointer">CONTACT ME</h3>
+            <a href="/Resume/DAResume.pdf" download>
+              <button className="contact mb-[10px] cursor-pointer">DOWNLOAD CV</button>
+            </a>
             <div className="line2"></div>
           </div>
         </motion.section>
