@@ -19,7 +19,7 @@ export default function Home() {
   const [nameEr, setNameEr] = useState("");
   const [EmailEr, setEmailEr] = useState("");
   const [MsgEr, setMsgEr] = useState("");
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false);
 
   const [confetti, setConfetti] = useState(false);
 
@@ -53,7 +53,7 @@ export default function Home() {
 
     setConfetti(!confetti);
 
-    setSuccess(!success)
+    setSuccess(!success);
 
     return true;
   }
@@ -83,13 +83,13 @@ export default function Home() {
         console.log(err);
       });
 
-      setTimeout(() => {
-        setConfetti(false)
-        setSuccess(false)
-      }, 6000);
+    setTimeout(() => {
+      setConfetti(false);
+      setSuccess(false);
+    }, 6000);
   };
 
-  const scrollable = useRef<HTMLDivElement>(null)
+  const scrollable = useRef<HTMLDivElement>(null);
   return (
     <>
       <section>
@@ -111,7 +111,7 @@ export default function Home() {
             <a href="https://www.facebook.com/davitabutidze.48" target="_blank">
               <img className="social" src="/facebook.svg" alt="" />
             </a>
-            <a href="https://www.instagram.com/davidabutidzee/" target="_blank">
+            <a href="https://www.instagram.com/cazemosiarule/" target="_blank">
               <img className="social" src="/instagram.svg" alt="" />
             </a>
             <a
@@ -167,7 +167,9 @@ export default function Home() {
               building accessible web apps that users love.
             </p>
             <a href="/Resume/DAResume.pdf" download>
-              <button className="contact mb-[10px] cursor-pointer">DOWNLOAD CV</button>
+              <button className="contact mb-[10px] cursor-pointer">
+                DOWNLOAD CV
+              </button>
             </a>
             <div className="line2"></div>
           </div>
@@ -203,27 +205,27 @@ export default function Home() {
         >
           <div></div>
           <div></div>
-          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang xl:w-[125px]">HTML</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
           </motion.div>
-          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[185px]">TailWind CSS</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
           </motion.div>
-          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">JavaScript</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
           </motion.div>
-          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">React</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
           </motion.div>
-          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">TypeScript</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
           </motion.div>
-          <motion.div className="xl:w-[345px]" whileHover={{scale: "1.1"}}>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">Next.js</h2>
             <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
           </motion.div>
@@ -234,7 +236,16 @@ export default function Home() {
           <div>
             <h1 className="projects">Projects</h1>
           </div>
-          <div className="cursor-pointer" onClick={() => {if(scrollable.current)return scrollable.current.scrollIntoView({ behavior: "smooth", block: "end" })}}>
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              if (scrollable.current)
+                return scrollable.current.scrollIntoView({
+                  behavior: "smooth",
+                  block: "end",
+                });
+            }}
+          >
             <h3 className="contact mb-[10px]">CONTACT ME</h3>
             <div className="line2"></div>
           </div>
@@ -278,11 +289,20 @@ export default function Home() {
           ))}
         </section>
       </section>
-      <footer ref={scrollable} className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full relative">
-      {confetti ? <Confetti
-          style={{ height: "100%", left: "50%", transform: "translateX(-50%)" }}
-          width={window.innerWidth}
-        /> : null}
+      <footer
+        ref={scrollable}
+        className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full relative"
+      >
+        {confetti ? (
+          <Confetti
+            style={{
+              height: "100%",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+            width={window.innerWidth}
+          />
+        ) : null}
         <motion.div
           className="xl:flex xl:flex-col xl:justify-center xl:items-left"
           whileInView={{
@@ -320,7 +340,7 @@ export default function Home() {
             style={{ color: "#FFF" }}
             placeholder="NAME"
             name="user_name"
-            whileHover={{scale: "1.1"}}
+            whileHover={{ scale: "1.1" }}
           />
           <p className="errori" style={{ color: "red" }}>
             {nameEr}
@@ -332,7 +352,7 @@ export default function Home() {
             placeholder="EMAIL"
             style={{ color: "#FFF" }}
             name="user_email"
-            whileHover={{scale: "1.1"}}
+            whileHover={{ scale: "1.1" }}
           />
           <p className="errori" style={{ color: "red" }}>
             {EmailEr}
@@ -344,12 +364,17 @@ export default function Home() {
             type="text"
             placeholder="MESSAGE"
             name="message"
-            whileHover={{scale: "1.1"}}
+            whileHover={{ scale: "1.1" }}
           />
           <p className="errori" style={{ color: "red" }}>
             {MsgEr}
           </p>
-          {success && (<p className="success">Thanks. <br />Email Was Successfully Sent!</p>)}
+          {success && (
+            <p className="success">
+              Thanks. <br />
+              Email Was Successfully Sent!
+            </p>
+          )}
           <button className="btn mt-5 pb-2">Send Message</button>
         </motion.form>
       </footer>
