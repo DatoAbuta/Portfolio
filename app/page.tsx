@@ -229,6 +229,22 @@ export default function Home() {
             <h2 className="lang mt-6 xl:w-[125px]">Next.js</h2>
             <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
           </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
+            <h2 className="lang mt-6 xl:w-[125px]">Nest.js</h2>
+            <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
+            <h2 className="lang mt-6 xl:w-[125px]">MongoDB</h2>
+            <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
+            <h2 className="lang mt-6 xl:w-[125px]">RestAPI</h2>
+            <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
+            <h2 className="lang mt-6 xl:w-[125px]">Express.js</h2>
+            <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+          </motion.div>
           <div></div>
         </motion.section>
 
