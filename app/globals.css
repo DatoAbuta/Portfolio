@@ -14,6 +14,7 @@ body{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 h1{
@@ -65,7 +66,7 @@ a{
 
 .line2{
   background: var(--Green, #4EE1A0);
-  width: 120px;
+  width: 132px;
   height: 2px;
 }
 
@@ -216,10 +217,19 @@ input{
   border-bottom: 2px solid #4EE1A0;
 }
 
-.errori{
-  text-align: right;
+.errori,.success{
+    color: #FF7979;
+    text-align: right;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
 }
 
+.success{
+  margin-top: 5px;
+  color: #4EE1A0;
+}
 .linee{
   height: 1px;
   background: var(--White, #FFF);
@@ -236,6 +246,9 @@ input{
   }
   .nice{
     text-align: left;
+  }
+  .errori,.success{
+    font-size: 17px;
   }
   .middle{
     justify-content: left;
@@ -290,6 +303,9 @@ input{
     height: 1px;
     flex-shrink: 0;
   }
+  .errori,.success{
+    font-size: 18px;
+  }
   .cont{
     text-align: left;
     color: var(--White, #FFF);
@@ -318,5 +334,9 @@ input{
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+  }
+  .wrapped{
+    word-wrap: normal;
+    text-wrap: wrap;
   }
 }

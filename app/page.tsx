@@ -1,81 +1,95 @@
 "use client";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { data } from "./data";
 import { Typewriter } from "react-simple-typewriter";
-import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { useRef } from "react";
-
-type SubmitType = {
-  emaili: string;
-  saxeli: string;
-  message: string;
-};
-
-const schema = yup.object().shape({
-  saxeli: yup
-    .string()
-    .required("First Name Is Empty")
-    .matches(/^[a-zA-Z]+$/, "Only letters are allowed"),
-  emaili: yup
-    .string()
-    .required("Looks Like This Is Not An Email")
-    .email("Email Isn't Valid"),
-  message: yup.string().required("Cannot Be Empty"),
-});
+import { motion } from "framer-motion";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import Confetti from "react-confetti";
 
 export default function Home() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SubmitType>();
-  // resolver: yupResolver(schema),);
+  const form = useRef(null);
 
-  const onsubmit = async (data: SubmitType) => {
-    const tempData = {
-      from_name: data.saxeli,
-      from_email: data.emaili,
-      message: data.message,
-    };
-    console.log(data);
+  const [formState, setFormState] = useState({
+    user_name: "",
+    user_email: "",
+    message: "",
+  });
+
+  const [nameEr, setNameEr] = useState("");
+  const [EmailEr, setEmailEr] = useState("");
+  const [MsgEr, setMsgEr] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const [confetti, setConfetti] = useState(false);
+
+  function validateForm() {
+    if (!formState.user_name) {
+      setNameEr("Cannot Be Empty");
+      return false;
+    } else {
+      setNameEr("");
+    }
+
+    if (!formState.user_email) {
+      setEmailEr("Cannot Be Empty");
+      return false;
+    } else {
+      setEmailEr("");
+    }
+
+    if (!formState.message) {
+      setMsgEr("Cannot Be Empty");
+      return false;
+    } else {
+      setMsgEr("");
+    }
+
+    setFormState({
+      user_name: "",
+      user_email: "",
+      message: "",
+    });
+
+    setConfetti(!confetti);
+
+    setSuccess(!success);
+
+    return true;
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    if (!form.current) return;
+
     emailjs
-      .sendForm(
-        "service_fcz9f4e",
-        "template_iw96yur",
-        tempData,
-        "ivP0zlBBE87ZvuzHc"
-      )
+      .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
+        publicKey: "ivP0zlBBE87ZvuzHc",
+      })
       .then((el) => {
         console.log(el);
       })
       .catch((err) => {
         console.log(err);
       });
+
+    setTimeout(() => {
+      setConfetti(false);
+      setSuccess(false);
+    }, 6000);
   };
 
-  // const form = useRef<HTMLFormElement>(null);
-
-  // const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-
-  //   if (form.current) {
-  //     emailjs
-  //       .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
-  //         publicKey: "ivP0zlBBE87ZvuzHc",
-  //       })
-  //       .then((el) => {
-  //         console.log(el);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // };
-
+  const scrollable = useRef<HTMLDivElement>(null);
   return (
     <>
       <section>
@@ -97,7 +111,7 @@ export default function Home() {
             <a href="https://www.facebook.com/davitabutidze.48" target="_blank">
               <img className="social" src="/facebook.svg" alt="" />
             </a>
-            <a href="https://www.instagram.com/davidabutidzee/" target="_blank">
+            <a href="https://www.instagram.com/cazemosiarule/" target="_blank">
               <img className="social" src="/instagram.svg" alt="" />
             </a>
             <a
@@ -152,11 +166,10 @@ export default function Home() {
               Based in the GEO, I’m a front-end developer passionate about
               building accessible web apps that users love.
             </p>
-            <a
-              href="https://www.linkedin.com/in/dato-abutidze-9056aa294/"
-              target="_blank"
-            >
-              <h3 className="contact mb-[10px]">CONTACT ME</h3>
+            <a href="/Resume/DAResume.pdf" download>
+              <button className="contact mb-[10px] cursor-pointer">
+                DOWNLOAD CV
+              </button>
             </a>
             <div className="line2"></div>
           </div>
@@ -192,30 +205,30 @@ export default function Home() {
         >
           <div></div>
           <div></div>
-          <div className="xl:w-[345px]">
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang xl:w-[125px]">HTML</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[185px]">TailWind CSS</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">JavaScript</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">React</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">TypeScript</h2>
             <p className="exp xl:w-[345px]">1 Year Experience</p>
-          </div>
-          <div className="xl:w-[345px]">
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">Next.js</h2>
             <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
-          </div>
+          </motion.div>
           <div></div>
         </motion.section>
 
@@ -223,29 +236,34 @@ export default function Home() {
           <div>
             <h1 className="projects">Projects</h1>
           </div>
-          <div>
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              if (scrollable.current)
+                return scrollable.current.scrollIntoView({
+                  behavior: "smooth",
+                  block: "end",
+                });
+            }}
+          >
             <h3 className="contact mb-[10px]">CONTACT ME</h3>
             <div className="line2"></div>
           </div>
         </section>
 
-        <section className="projectss md:grid md:grid-cols-2 md:gap-5 md:ml-[20px] xl:grid-cols-3 xl:ml-[100px]">
+        <section className="projectss md:grid md:grid-cols-2 md:gap-5 xl:grid-cols-3">
           {data.map((el) => (
             <motion.div
               key={el.name}
               className="mb-10"
               whileInView={{
                 opacity: 1,
-                x: 0,
-                y: 0,
               }}
               whileHover={{
                 scale: 1.1,
               }}
               initial={{
                 opacity: 0,
-                x: 100,
-                y: 100,
               }}
             >
               <img src={el.photo} alt="" />
@@ -271,7 +289,20 @@ export default function Home() {
           ))}
         </section>
       </section>
-      <footer className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full">
+      <footer
+        ref={scrollable}
+        className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full relative"
+      >
+        {confetti ? (
+          <Confetti
+            style={{
+              height: "100%",
+              left: "50%",
+              transform: "translateX(-50%)",
+            }}
+            width={window.innerWidth}
+          />
+        ) : null}
         <motion.div
           className="xl:flex xl:flex-col xl:justify-center xl:items-left"
           whileInView={{
@@ -289,59 +320,63 @@ export default function Home() {
             fill in the form, and I’ll get back to you as soon as possible.
           </p>
         </motion.div>
-        <form
-          // ref={form}
-          onSubmit={handleSubmit(onsubmit)}
-          className="flex justify-center items-center flex-col"
-          // whileInView={{
-          //   opacity: 1,
-          //   y: 0,
-          // }}
-          // initial={{
-          //   opacity: 0,
-          //   y: 100,
-          // }}
+        <motion.form
+          ref={form}
+          onSubmit={handleSubmit}
+          // className="flex justify-center items-center flex-col"
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          initial={{
+            opacity: 0,
+            y: 100,
+          }}
         >
-          <input
+          <motion.input
+            onChange={handleChange}
+            value={formState.user_name}
             type="text"
             style={{ color: "#FFF" }}
             placeholder="NAME"
-            {...register("saxeli")}
-            // whileHover={{ scale: "1.1" }}
-            // name="saxeli"
+            name="user_name"
+            whileHover={{ scale: "1.1" }}
           />
-          {errors.saxeli && (
-            <p className="errori" style={{ color: "red" }}>
-              {errors.saxeli.message}
-            </p>
-          )}
-          <input
+          <p className="errori" style={{ color: "red" }}>
+            {nameEr}
+          </p>
+          <motion.input
+            onChange={handleChange}
+            value={formState.user_email}
             type="email"
             placeholder="EMAIL"
             style={{ color: "#FFF" }}
-            {...register("emaili")}
-            // whileHover={{ scale: "1.1" }}
-            // name="emaili"
+            name="user_email"
+            whileHover={{ scale: "1.1" }}
           />
-          {errors.emaili && (
-            <p className="errori" style={{ color: "red" }}>
-              {errors.emaili.message}
-            </p>
-          )}
-          <input
+          <p className="errori" style={{ color: "red" }}>
+            {EmailEr}
+          </p>
+          <motion.input
+            onChange={handleChange}
+            value={formState.message}
             style={{ height: "107px", color: "#FFF" }}
             type="text"
             placeholder="MESSAGE"
-            {...register("message")}
-            // whileHover={{ scale: "1.1" }}
+            name="message"
+            whileHover={{ scale: "1.1" }}
           />
-          {errors.message && (
-            <p className="errori" style={{ color: "red" }}>
-              {errors.message.message}
+          <p className="errori" style={{ color: "red" }}>
+            {MsgEr}
+          </p>
+          {success && (
+            <p className="success">
+              Thanks. <br />
+              Email Was Successfully Sent!
             </p>
           )}
           <button className="btn mt-5 pb-2">Send Message</button>
-        </form>
+        </motion.form>
       </footer>
     </>
   );
