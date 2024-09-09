@@ -108,12 +108,12 @@ export default function Home() {
             <h1 className="text-center">DatoAbuta</h1>
           </div>
           <nav className="flex justify-center items-center gap-3 mt-5">
-            <a href="https://www.facebook.com/davitabutidze.48" target="_blank">
+            <a href="https://www.facebook.com/profile.php?id=61552727493722" target="_blank">
               <img className="social" src="/facebook.svg" alt="" />
             </a>
-            <a href="https://www.instagram.com/cazemosiarule/" target="_blank">
+            {/* <a href="https://www.instagram.com/cazemosiarule/" target="_blank">
               <img className="social" src="/instagram.svg" alt="" />
-            </a>
+            </a> */}
             <a
               href="https://www.linkedin.com/in/dato-abutidze-9056aa294/"
               target="_blank"
