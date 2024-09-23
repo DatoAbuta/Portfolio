@@ -166,7 +166,7 @@ export default function Home() {
               Based in the GEO, I’m a front-end developer passionate about
               building accessible web apps that users love.
             </p>
-            <a href="./DA_Resume.pdf" download>
+            <a href="/DA_Resume.pdf" download>
               <button className="contact mb-[10px] cursor-pointer">
                 DOWNLOAD CV
               </button>
