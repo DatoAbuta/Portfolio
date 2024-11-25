@@ -195,7 +195,18 @@ footer{
 }
 
 input{
-  width: 343px;
+  width: 445px;
+  height: 43px;
+  flex-shrink: 0;
+  padding-left: 24px;
+  background-color: transparent;
+  border-bottom: 2px solid var(--White, #FFF);
+  outline: none;
+}
+
+textarea{
+  padding-top: 15px;
+  width: 445px;
   height: 43px;
   flex-shrink: 0;
   padding-left: 24px;

@@ -65,6 +65,13 @@ export default function Home() {
     });
   };
 
+  const handleChangeArea = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -94,7 +101,7 @@ export default function Home() {
     <>
       <section>
         <motion.header
-          className="mt-5 xl:flex xl:gap-[716px] xl:justify-center xl:items-center"
+          className="mt-5 xl:flex xl:justify-center xl:items-center xl:justify-between"
           whileInView={{
             opacity: 1,
             y: 0,
@@ -108,12 +115,15 @@ export default function Home() {
             <h1 className="text-center">DatoAbuta</h1>
           </div>
           <nav className="flex justify-center items-center gap-3 mt-5">
-            <a href="https://www.facebook.com/profile.php?id=61552727493722" target="_blank">
+            <a
+              href="https://www.facebook.com/profile.php?id=61552727493722"
+              target="_blank"
+            >
               <img className="social" src="/facebook.svg" alt="" />
             </a>
-            {/* <a href="https://www.instagram.com/cazemosiarule/" target="_blank">
+            <a href="https://www.instagram.com/cazemosiarule/" target="_blank">
               <img className="social" src="/instagram.svg" alt="" />
-            </a> */}
+            </a>
             <a
               href="https://www.linkedin.com/in/dato-abutidze-9056aa294/"
               target="_blank"
@@ -127,7 +137,7 @@ export default function Home() {
         </motion.header>
 
         <motion.section
-          className="md:flex md:flex-row-reverse xl:justify-center xl:items-center"
+          className="md:flex md:flex-row-reverse xl:justify-center xl:items-center xl:justify-between"
           whileInView={{
             opacity: 1,
             y: 0,
@@ -139,8 +149,8 @@ export default function Home() {
         >
           <div className="photo flex justify-center items-center">
             <img
-              className="w-[174px] h-[306px] mt-5 vaxo xl:ml-20"
-              src="/me.png"
+              className="w-[270px] h-[306px] mt-5 vaxo xl:ml-20"
+              src="/mee.png"
               alt=""
             />
           </div>
@@ -339,7 +349,6 @@ export default function Home() {
         <motion.form
           ref={form}
           onSubmit={handleSubmit}
-          // className="flex justify-center items-center flex-col"
           whileInView={{
             opacity: 1,
             y: 0,
@@ -373,11 +382,10 @@ export default function Home() {
           <p className="errori" style={{ color: "red" }}>
             {EmailEr}
           </p>
-          <motion.input
-            onChange={handleChange}
+          <motion.textarea
+            onChange={handleChangeArea}
             value={formState.message}
             style={{ height: "107px", color: "#FFF" }}
-            type="text"
             placeholder="MESSAGE"
             name="message"
             whileHover={{ scale: "1.1" }}
