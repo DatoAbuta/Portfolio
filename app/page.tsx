@@ -2,99 +2,16 @@
 
 import { data } from "./data";
 import { Typewriter } from "react-simple-typewriter";
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import Confetti from "react-confetti";
+import { useRef } from "react";
 
 export default function Home() {
-  const form = useRef(null);
-
-  const [formState, setFormState] = useState({
-    user_name: "",
-    user_email: "",
-    message: "",
-  });
-
-  const [nameEr, setNameEr] = useState("");
-  const [EmailEr, setEmailEr] = useState("");
-  const [MsgEr, setMsgEr] = useState("");
-  const [success, setSuccess] = useState(false);
-
-  const [confetti, setConfetti] = useState(false);
-
-  function validateForm() {
-    if (!formState.user_name) {
-      setNameEr("Cannot Be Empty");
-      return false;
-    } else {
-      setNameEr("");
-    }
-
-    if (!formState.user_email) {
-      setEmailEr("Cannot Be Empty");
-      return false;
-    } else {
-      setEmailEr("");
-    }
-
-    if (!formState.message) {
-      setMsgEr("Cannot Be Empty");
-      return false;
-    } else {
-      setMsgEr("");
-    }
-
-    setFormState({
-      user_name: "",
-      user_email: "",
-      message: "",
-    });
-
-    setConfetti(!confetti);
-
-    setSuccess(!success);
-
-    return true;
-  }
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    if (!form.current) return;
-
-    emailjs
-      .sendForm("service_fcz9f4e", "template_iw96yur", form.current, {
-        publicKey: "ivP0zlBBE87ZvuzHc",
-      })
-      .then((el) => {
-        console.log(el);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    setTimeout(() => {
-      setConfetti(false);
-      setSuccess(false);
-    }, 6000);
-  };
-
   const scrollable = useRef<HTMLDivElement>(null);
   return (
     <>
       <section>
         <motion.header
-          className="mt-5 xl:flex xl:gap-[716px] xl:justify-center xl:items-center"
+          className="mt-5 xl:flex xl:justify-center xl:items-center xl:justify-between"
           whileInView={{
             opacity: 1,
             y: 0,
@@ -108,7 +25,10 @@ export default function Home() {
             <h1 className="text-center">DatoAbuta</h1>
           </div>
           <nav className="flex justify-center items-center gap-3 mt-5">
-            <a href="https://www.facebook.com/davitabutidze.48" target="_blank">
+            <a
+              href="https://www.facebook.com/profile.php?id=61552727493722"
+              target="_blank"
+            >
               <img className="social" src="/facebook.svg" alt="" />
             </a>
             <a href="https://www.instagram.com/cazemosiarule/" target="_blank">
@@ -127,7 +47,7 @@ export default function Home() {
         </motion.header>
 
         <motion.section
-          className="md:flex md:flex-row-reverse xl:justify-center xl:items-center"
+          className="md:flex md:flex-row-reverse xl:justify-center xl:items-center xl:justify-between"
           whileInView={{
             opacity: 1,
             y: 0,
@@ -139,8 +59,8 @@ export default function Home() {
         >
           <div className="photo flex justify-center items-center">
             <img
-              className="w-[174px] h-[306px] mt-5 vaxo xl:ml-20"
-              src="/me.png"
+              className="w-[270px] h-[306px] mt-5 vaxo xl:ml-20"
+              src="/mee.png"
               alt=""
             />
           </div>
@@ -166,7 +86,7 @@ export default function Home() {
               Based in the GEO, I’m a front-end developer passionate about
               building accessible web apps that users love.
             </p>
-            <a href="/Resume/DAResume.pdf" download>
+            <a href="/DA_Resume.pdf" download>
               <button className="contact mb-[10px] cursor-pointer">
                 DOWNLOAD CV
               </button>
@@ -227,6 +147,22 @@ export default function Home() {
           </motion.div>
           <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
             <h2 className="lang mt-6 xl:w-[125px]">Next.js</h2>
+            <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
+            <h2 className="lang mt-6 xl:w-[125px]">Nest.js</h2>
+            <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
+            <h2 className="lang mt-6 xl:w-[125px]">MongoDB</h2>
+            <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
+            <h2 className="lang mt-6 xl:w-[125px]">RestAPI</h2>
+            <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
+          </motion.div>
+          <motion.div className="xl:w-[345px]" whileHover={{ scale: "1.1" }}>
+            <h2 className="lang mt-6 xl:w-[125px]">Express.js</h2>
             <p className="exp mb-10 xl:w-[345px]">1 Year Experience</p>
           </motion.div>
           <div></div>
@@ -291,20 +227,10 @@ export default function Home() {
       </section>
       <footer
         ref={scrollable}
-        className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-center xl:items-center w-full relative"
+        className="flex items-center flex-col gap-5 xl:flex xl:flex-row xl:justify-evenly xl:items-center w-full relative"
       >
-        {confetti ? (
-          <Confetti
-            style={{
-              height: "100%",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}
-            width={window.innerWidth}
-          />
-        ) : null}
         <motion.div
-          className="xl:flex xl:flex-col xl:justify-center xl:items-left"
+          className="flex flex-col justify-start items-start"
           whileInView={{
             opacity: 1,
             y: 0,
@@ -314,69 +240,90 @@ export default function Home() {
             y: 100,
           }}
         >
-          <h1 className="cont mt-[60px] xl:m-0 xl:mb-[36px]">Contact</h1>
-          <p className="desc xl:mb-[36px]">
+          <h1 className="cont mt-[60px] xl:m-0 xl:mb-[36px] text-start">
+            Contact
+          </h1>
+          <p className="desc xl:mb-[36px] text-start">
             I would love to hear about your project and how I could help. Please
-            fill in the form, and I’ll get back to you as soon as possible.
+            contact my anywhere, and I’ll get back to you as soon as possible.
           </p>
         </motion.div>
-        <motion.form
-          ref={form}
-          onSubmit={handleSubmit}
-          // className="flex justify-center items-center flex-col"
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          initial={{
-            opacity: 0,
-            y: 100,
-          }}
-        >
-          <motion.input
-            onChange={handleChange}
-            value={formState.user_name}
-            type="text"
-            style={{ color: "#FFF" }}
-            placeholder="NAME"
-            name="user_name"
-            whileHover={{ scale: "1.1" }}
-          />
-          <p className="errori" style={{ color: "red" }}>
-            {nameEr}
-          </p>
-          <motion.input
-            onChange={handleChange}
-            value={formState.user_email}
-            type="email"
-            placeholder="EMAIL"
-            style={{ color: "#FFF" }}
-            name="user_email"
-            whileHover={{ scale: "1.1" }}
-          />
-          <p className="errori" style={{ color: "red" }}>
-            {EmailEr}
-          </p>
-          <motion.input
-            onChange={handleChange}
-            value={formState.message}
-            style={{ height: "107px", color: "#FFF" }}
-            type="text"
-            placeholder="MESSAGE"
-            name="message"
-            whileHover={{ scale: "1.1" }}
-          />
-          <p className="errori" style={{ color: "red" }}>
-            {MsgEr}
-          </p>
-          {success && (
-            <p className="success">
-              Thanks. <br />
-              Email Was Successfully Sent!
-            </p>
-          )}
-          <button className="btn mt-5 pb-2">Send Message</button>
-        </motion.form>
+        <motion.div className="flex items-start justify-start flex-col">
+          <div className="lasttt">
+            <motion.a
+              href="https://www.facebook.com/davidabutidze13"
+              target="_blank"
+              className="flex justify-center items-center gap-2"
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              initial={{
+                opacity: 0,
+                y: 100,
+              }}
+            >
+              <img className="social" src="/facebook.svg" alt="" />
+              <h1 className="hover:text-orange-500 ease-out duration-1000">
+                David Abutidze
+              </h1>
+            </motion.a>
+            <motion.a
+              href="https://www.instagram.com/abuta7_/"
+              target="_blank"
+              className="flex justify-center items-center gap-2"
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              initial={{
+                opacity: 0,
+                y: 100,
+              }}
+            >
+              <img className="social" src="/instagram.svg" alt="" />
+              <h1 className="hover:text-orange-500 ease-out duration-1000">
+                abuta7_
+              </h1>
+            </motion.a>
+            <motion.a
+              href="https://www.linkedin.com/in/dato-abutidze-9056aa294/"
+              target="_blank"
+              className="flex justify-center items-center gap-2"
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              initial={{
+                opacity: 0,
+                y: 100,
+              }}
+            >
+              <img className="social" src="/linkedin.svg" alt="" />
+              <h1 className="hover:text-orange-500 ease-out duration-1000">
+                Dato Abutidze
+              </h1>
+            </motion.a>
+            <motion.a
+              href="https://github.com/DatoAbuta"
+              target="_blank"
+              className="flex justify-center items-center gap-2"
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              initial={{
+                opacity: 0,
+                y: 100,
+              }}
+            >
+              <img className="social" src="/github.svg" alt="" />
+              <h1 className="hover:text-orange-500 ease-out duration-1000">
+                DatoAbuta
+              </h1>
+            </motion.a>
+          </div>
+        </motion.div>
       </footer>
     </>
   );

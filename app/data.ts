@@ -1,5 +1,12 @@
 export const data = [
   {
+    photo: "/projects/fullstack.jpeg",
+    name: "FullStack Invoice Project",
+    languages: "NestJs, MongoDB, RestApi, NextJs.",
+    live: "https://invoice-project-sbkdvt.vercel.app/",
+    git: "https://github.com/Abuta24/Backside",
+  },
+  {
     photo: "/projects/first.png",
     name: "Galleria Slideshow Site",
     languages: "TypeScript, TailWind CSS",
@@ -13,13 +20,6 @@ export const data = [
     live: "https://intro-component-sign-up-form-beta.vercel.app/",
     git: "https://github.com/DatoAbuta/Intro-Component-Sign-Up-Form",
   },
-  // {
-  //     photo: "/projects/third.png",
-  //     name: "Ask Girl For Date",
-  //     languages: "Typescript",
-  //     live: "https://askgirlfordate.vercel.app/",
-  //     git: "https://github.com/DatoAbuta/askgirlfordate",
-  // },
   {
     photo: "/projects/fourth.png",
     name: "Entertainment Site",
@@ -67,7 +67,7 @@ export const data = [
     name: "TODO App",
     languages: "HTML, CSS, JavaScript",
     live: "https://todos-two-plum.vercel.app/",
-    git: "https://todos-two-plum.vercel.app/",
+    git: "https://github.com/DatoAbuta/todos",
   },
   {
     photo: "/projects/eleventh.png",
