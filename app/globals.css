@@ -175,7 +175,7 @@ footer{
 
 .desc{
   color: var(--Grey, #D9D9D9);
-  text-align: start;
+  text-align: center;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -185,7 +185,7 @@ footer{
 
 .cont{
   color: var(--White, #FFF);
-  text-align: start;
+  text-align: center;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -195,18 +195,7 @@ footer{
 }
 
 input{
-  width: 445px;
-  height: 43px;
-  flex-shrink: 0;
-  padding-left: 24px;
-  background-color: transparent;
-  border-bottom: 2px solid var(--White, #FFF);
-  outline: none;
-}
-
-textarea{
-  padding-top: 15px;
-  width: 445px;
+  width: 343px;
   height: 43px;
   flex-shrink: 0;
   padding-left: 24px;
@@ -271,6 +260,7 @@ textarea{
   }
   .desc{
     color: var(--Grey, #D9D9D9);
+    text-align: center;
     font-size: 18px;
     font-style: normal;
     font-weight: 500;
@@ -279,6 +269,7 @@ textarea{
   }
   .cont{
     color: var(--White, #FFF);
+    text-align: center;
     font-size: 72px;
     font-style: normal;
     font-weight: 700;
